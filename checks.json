@@ -139,7 +139,7 @@
     {
       "id": "feeds",
       "title": "Feed-Quellen",
-      "description": "YouTube-RSS ist der einzige Weg, auf dem Kiesel Kanäle und Playlists abonniert. Achtung: YouTube liefert /feeds/ nicht an Rechenzentrums-IPs aus — aus einem CI-Runner heraus ist dieser Endpunkt daher nicht prüfbar.",
+      "description": "YouTube-RSS war der Weg, über den Kiesel Kanäle und Playlists abonniert. Der Endpunkt antwortet seit dem 13.09.2026 mit 404 — aus zwei Rechenzentrums-Netzen und von einem Endkunden-Anschluss. Bis das geklärt ist, bleibt diese Gruppe rot; sie ist die wichtigste Zeile auf dieser Seite.",
       "checks": [
         {
           "id": "yt-feed-channel",
@@ -147,8 +147,7 @@
           "type": "pattern",
           "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uZZ5FSM9Ttw",
           "pattern": "<feed|<entry",
-          "note": "Bricht dieser Check auf einem Endkunden-Anschluss, lassen sich YouTube-Kanäle nicht mehr abonnieren.",
-          "datacenterBlocked": true
+          "note": "Solange dieser Check rot ist, lassen sich YouTube-Kanäle nicht abonnieren."
         },
         {
           "id": "yt-feed-playlist",
@@ -156,8 +155,7 @@
           "type": "pattern",
           "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=UU_x5XG1OV2P6uZZ5FSM9Ttw",
           "pattern": "<feed|<entry",
-          "note": "Uploads-Playlist des Google-for-Developers-Kanals — bewusst eine neutrale, offizielle Quelle, damit dieses öffentliche Repo nichts über persönliche Abos verrät.",
-          "datacenterBlocked": true
+          "note": "Dasselbe für Playlists."
         },
         {
           "id": "yt-channel-page",

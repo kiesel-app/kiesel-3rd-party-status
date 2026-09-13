@@ -1,6 +1,6 @@
 {
-  "time": "2026-09-13 06:29 UTC",
-  "generated": "2026-09-13T06:29:37.377Z",
+  "time": "2026-09-13 06:30 UTC",
+  "generated": "2026-09-13T06:30:34.859Z",
   "groups": [
     {
       "id": "oembed",
@@ -13,7 +13,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 111,
+          "ms": 115,
           "detail": "Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster)"
         },
         {
@@ -22,7 +22,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 47,
+          "ms": 237,
           "detail": "The Mountain"
         },
         {
@@ -31,7 +31,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 183,
+          "ms": 288,
           "detail": "Scramble up ur name & I’ll try to guess it😍❤️ #foryoupage #petsoftiktok #aesthetic"
         },
         {
@@ -40,7 +40,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 265,
+          "ms": 239,
           "detail": "Never Gonna Give You Up"
         },
         {
@@ -49,7 +49,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 177,
+          "ms": 122,
           "detail": "Flickermood by Forss"
         },
         {
@@ -58,7 +58,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 322,
+          "ms": 139,
           "detail": "Midnight Sun | Iceland"
         },
         {
@@ -67,7 +67,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 65,
+          "ms": 597,
           "detail": "The Daily"
         }
       ]
@@ -83,7 +83,7 @@
           "note": "Kiesel liest embedUrl aus dem JSON-LD VideoObject.",
           "state": "ok",
           "status": 200,
-          "ms": 800,
+          "ms": 297,
           "detail": "Muster gefunden"
         },
         {
@@ -92,7 +92,7 @@
           "note": "Kiesel liest die Player-URL aus dem twitter:player-Meta-Tag.",
           "state": "ok",
           "status": 200,
-          "ms": 1262,
+          "ms": 200,
           "detail": "Muster gefunden"
         },
         {
@@ -101,7 +101,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 36,
+          "ms": 165,
           "detail": "HTTP 200"
         },
         {
@@ -110,7 +110,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 148,
+          "ms": 612,
           "detail": "HTTP 200"
         },
         {
@@ -119,7 +119,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 116,
+          "ms": 804,
           "detail": "HTTP 200"
         }
       ]
@@ -135,7 +135,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 21,
+          "ms": 93,
           "detail": "Feld \"did\" vorhanden"
         },
         {
@@ -144,7 +144,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 40,
+          "ms": 408,
           "detail": "Feld \"availableUserDomains\" vorhanden"
         },
         {
@@ -153,7 +153,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 100,
+          "ms": 66,
           "detail": "Feld \"version\" vorhanden"
         },
         {
@@ -162,7 +162,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 130,
+          "ms": 399,
           "detail": "Feld \"search\" vorhanden"
         }
       ]
@@ -170,25 +170,25 @@
     {
       "id": "feeds",
       "title": "Feed-Quellen",
-      "description": "YouTube-RSS ist der einzige Weg, auf dem Kiesel Kanäle und Playlists abonniert. Achtung: YouTube liefert /feeds/ nicht an Rechenzentrums-IPs aus — aus einem CI-Runner heraus ist dieser Endpunkt daher nicht prüfbar.",
+      "description": "YouTube-RSS war der Weg, über den Kiesel Kanäle und Playlists abonniert. Der Endpunkt antwortet seit dem 13.09.2026 mit 404 — aus zwei Rechenzentrums-Netzen und von einem Endkunden-Anschluss. Bis das geklärt ist, bleibt diese Gruppe rot; sie ist die wichtigste Zeile auf dieser Seite.",
       "checks": [
         {
           "id": "yt-feed-channel",
           "name": "YouTube-Feed (Kanal)",
-          "note": "Bricht dieser Check auf einem Endkunden-Anschluss, lassen sich YouTube-Kanäle nicht mehr abonnieren.",
-          "state": "blocked",
+          "note": "Solange dieser Check rot ist, lassen sich YouTube-Kanäle nicht abonnieren.",
+          "state": "fail",
           "status": 404,
-          "ms": 73,
-          "detail": "Von Rechenzentrums-IPs gesperrt (404) — aus CI nicht prüfbar."
+          "ms": 135,
+          "detail": "HTTP 404"
         },
         {
           "id": "yt-feed-playlist",
           "name": "YouTube-Feed (Playlist)",
-          "note": "Uploads-Playlist des Google-for-Developers-Kanals — bewusst eine neutrale, offizielle Quelle, damit dieses öffentliche Repo nichts über persönliche Abos verrät.",
-          "state": "blocked",
+          "note": "Dasselbe für Playlists.",
+          "state": "fail",
           "status": 404,
-          "ms": 104,
-          "detail": "Von Rechenzentrums-IPs gesperrt (404) — aus CI nicht prüfbar."
+          "ms": 99,
+          "detail": "HTTP 404"
         },
         {
           "id": "yt-channel-page",
@@ -196,7 +196,7 @@
           "note": "Aus diesem Muster leitet Kiesel die Feed-URL eines @handle-Links ab.",
           "state": "ok",
           "status": 200,
-          "ms": 250,
+          "ms": 505,
           "detail": "Muster gefunden"
         }
       ]
@@ -212,7 +212,7 @@
           "note": "PDS-Server laden diese Datei bei jedem Bluesky-Login. Fehlt sie, schlägt die Anmeldung fehl.",
           "state": "ok",
           "status": 200,
-          "ms": 367,
+          "ms": 166,
           "detail": "Feld \"client_id\" vorhanden"
         },
         {
@@ -221,7 +221,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 290,
+          "ms": 96,
           "detail": "HTTP 200"
         }
       ]

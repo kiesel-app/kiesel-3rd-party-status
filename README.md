@@ -45,22 +45,16 @@ zu ignorieren.
 
 ### Der Fall YouTube-RSS
 
-`feeds/videos.xml` beantwortet Anfragen aus Rechenzentren mit **404** — gemessen
-am 13.09.2026 sowohl von einer Entwicklermaschine als auch aus GitHubs Netz,
-also aus zwei unabhängigen Netzen. Diese Checks sind deshalb
-`datacenterBlocked` markiert.
+`feeds/videos.xml` antwortet mit **404** — gemessen am 13.09.2026 von einer
+Entwicklermaschine, aus GitHubs Netz und von einem Endkunden-Anschluss. Der
+Endpunkt ist also nicht für bestimmte Netze gesperrt, sondern liefert
+niemandem mehr aus.
 
-Belegt ist der Unterschied zum Endkunden-Anschluss bislang nur für
-**Playlist-Feeds**: Die liefen über Mobilfunk, während sie hier 404 gaben.
-Für **Kanal-Feeds** steht der Gegenbeweis noch aus — dort gab es auch vom
-Handy aus 404, allerdings zu einem Zeitpunkt, als ein Fehler in Kiesel
-Consent-Cookies an den Endpunkt schickte. Ob der Kanal-Feed grundsätzlich
-nicht mehr ausgeliefert wird, ist damit offen.
-
-Falls sich die Rechenzentrums-Sperre auch für Kanäle bestätigt, hat das
-Folgen über das Monitoring hinaus: Dann könnte **kein serverseitiger Proxy**
-YouTube-RSS für Kiesel abrufen, der Abruf müsste vom Gerät des Nutzers
-kommen.
+Das betrifft Kiesel direkt: YouTube-Kanäle und -Playlists lassen sich darüber
+nicht mehr abonnieren. Ein serverseitiger Proxy hilft nicht, weil der
+Endpunkt überall dasselbe antwortet. Alternativen wären ein Dienst wie
+[Open RSS](https://openrss.org) — der allerdings nur Videos ab dem Zeitpunkt
+des Abonnierens ausliefert, nicht den Bestand.
 
 ## Einen Endpunkt ergänzen
 

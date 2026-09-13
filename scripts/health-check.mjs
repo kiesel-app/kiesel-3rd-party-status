@@ -10,10 +10,9 @@
  *   sample   the endpoint works, but our example URL is gone (404 on a
  *            sample) — our problem to fix, not an outage
  *   blocked  the endpoint refuses datacenter traffic, so a CI runner cannot
- *            judge it. Measured 2026-09-13: YouTube's /feeds/ answers 404
- *            from this machine AND from GitHub's network, while serving the
- *            same URL fine over a consumer connection. Marking it fail would
- *            leave the page permanently red and teach everyone to ignore it.
+ *            judge it. Set "datacenterBlocked" on a check to enable this.
+ *            Use sparingly and only with evidence that a consumer connection
+ *            gets a different answer — otherwise it hides real outages.
  *   fail     the endpoint is down or changed shape
  *
  * Separating "sample" from "fail" matters: a dead example video would
