@@ -47,12 +47,20 @@ zu ignorieren.
 
 `feeds/videos.xml` beantwortet Anfragen aus Rechenzentren mit **404** — gemessen
 am 13.09.2026 sowohl von einer Entwicklermaschine als auch aus GitHubs Netz,
-während dieselbe URL über einen Mobilfunk-Anschluss ausgeliefert wird. Diese
-Checks sind deshalb `datacenterBlocked` markiert.
+also aus zwei unabhängigen Netzen. Diese Checks sind deshalb
+`datacenterBlocked` markiert.
 
-Das ist mehr als eine Monitoring-Fußnote: Es heißt, dass **kein serverseitiger
-Proxy** YouTube-RSS für Kiesel abrufen könnte. Der Abruf muss vom Gerät des
-Nutzers kommen.
+Belegt ist der Unterschied zum Endkunden-Anschluss bislang nur für
+**Playlist-Feeds**: Die liefen über Mobilfunk, während sie hier 404 gaben.
+Für **Kanal-Feeds** steht der Gegenbeweis noch aus — dort gab es auch vom
+Handy aus 404, allerdings zu einem Zeitpunkt, als ein Fehler in Kiesel
+Consent-Cookies an den Endpunkt schickte. Ob der Kanal-Feed grundsätzlich
+nicht mehr ausgeliefert wird, ist damit offen.
+
+Falls sich die Rechenzentrums-Sperre auch für Kanäle bestätigt, hat das
+Folgen über das Monitoring hinaus: Dann könnte **kein serverseitiger Proxy**
+YouTube-RSS für Kiesel abrufen, der Abruf müsste vom Gerät des Nutzers
+kommen.
 
 ## Einen Endpunkt ergänzen
 
