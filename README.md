@@ -28,17 +28,31 @@ sondern **das Muster, an dem der Code hängt** — etwa das JSON-LD-`VideoObject
 bei ZDF. Eine Seite, die antwortet, aber ihr Markup umgebaut hat, ist für Kiesel
 genauso kaputt wie eine, die nicht antwortet.
 
-## Die drei Zustände
+## Die vier Zustände
 
 - **OK** — Endpunkt antwortet, Erwartung erfüllt.
 - **Beispiel veraltet** — der Dienst läuft, aber die hier hinterlegte
   Beispiel-URL existiert nicht mehr (etwa ein gelöschtes Video). Unsere
   Baustelle, kein Ausfall. Dann in `checks.json` ein neues `sample` eintragen.
-- **Ausfall** — nicht erreichbar, gesperrt, oder das Antwortformat hat sich
-  geändert.
+- **Nicht prüfbar** — der Anbieter beantwortet Anfragen aus Rechenzentren
+  nicht, über einen normalen Anschluss aber schon. Aus dem CI-Runner heraus
+  lässt sich also nichts über seine Gesundheit sagen.
+- **Ausfall** — nicht erreichbar oder Antwortformat geändert.
 
-Diese Trennung ist Absicht: Würde ein gelöschtes Beispielvideo als roter
-Anbieter erscheinen, gewöhnte sich jeder daran, die Seite zu ignorieren.
+Diese Trennung ist Absicht: Würde ein gelöschtes Beispielvideo oder eine
+IP-Sperre als roter Anbieter erscheinen, gewöhnte sich jeder daran, die Seite
+zu ignorieren.
+
+### Der Fall YouTube-RSS
+
+`feeds/videos.xml` beantwortet Anfragen aus Rechenzentren mit **404** — gemessen
+am 13.09.2026 sowohl von einer Entwicklermaschine als auch aus GitHubs Netz,
+während dieselbe URL über einen Mobilfunk-Anschluss ausgeliefert wird. Diese
+Checks sind deshalb `datacenterBlocked` markiert.
+
+Das ist mehr als eine Monitoring-Fußnote: Es heißt, dass **kein serverseitiger
+Proxy** YouTube-RSS für Kiesel abrufen könnte. Der Abruf muss vom Gerät des
+Nutzers kommen.
 
 ## Einen Endpunkt ergänzen
 
@@ -50,6 +64,10 @@ Anbieter erscheinen, gewöhnte sich jeder daran, die Seite zu ignorieren.
 { "type": "pattern", "url": "https://…", "pattern": "regex" }         // erwartet ein Muster in der Antwort
 { "type": "http",    "url": "https://…" }                             // erwartet nur 2xx
 ```
+
+Zusätzlich `"datacenterBlocked": true` setzen, wenn der Anbieter CI-Traffic
+abweist — dann wird ein Fehlschlag als „Nicht prüfbar" gemeldet statt als
+Ausfall.
 
 Optional `note` ergänzen: ein Satz dazu, was in Kiesel bricht, wenn dieser
 Check rot wird. Der steht dann auf der Statusseite — hilfreich für alle, die

@@ -6,13 +6,58 @@
       "title": "oEmbed-Provider",
       "description": "Kiesel lädt Embeds über diese oEmbed-Endpunkte. Fällt einer aus, zeigt die App für dessen Links keine Vorschau mehr.",
       "checks": [
-        { "id": "youtube", "name": "YouTube", "type": "oembed", "endpoint": "https://www.youtube.com/oembed", "sample": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-        { "id": "vimeo", "name": "Vimeo", "type": "oembed", "endpoint": "https://vimeo.com/api/oembed.json", "sample": "https://vimeo.com/22439234" },
-        { "id": "tiktok", "name": "TikTok", "type": "oembed", "endpoint": "https://www.tiktok.com/oembed", "sample": "https://www.tiktok.com/@tiktok/video/6718335390845095173" },
-        { "id": "spotify", "name": "Spotify", "type": "oembed", "endpoint": "https://open.spotify.com/oembed", "sample": "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT" },
-        { "id": "soundcloud", "name": "SoundCloud", "type": "oembed", "endpoint": "https://soundcloud.com/oembed", "sample": "https://soundcloud.com/forss/flickermood", "extraParams": { "format": "json" } },
-        { "id": "dailymotion", "name": "Dailymotion", "type": "oembed", "endpoint": "https://www.dailymotion.com/services/oembed", "sample": "https://www.dailymotion.com/video/x7tgad0" },
-        { "id": "apple-podcasts", "name": "Apple Podcasts", "type": "oembed", "endpoint": "https://podcasts.apple.com/api/oembed", "sample": "https://podcasts.apple.com/us/podcast/the-daily/id1200361736" }
+        {
+          "id": "youtube",
+          "name": "YouTube",
+          "type": "oembed",
+          "endpoint": "https://www.youtube.com/oembed",
+          "sample": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        {
+          "id": "vimeo",
+          "name": "Vimeo",
+          "type": "oembed",
+          "endpoint": "https://vimeo.com/api/oembed.json",
+          "sample": "https://vimeo.com/22439234"
+        },
+        {
+          "id": "tiktok",
+          "name": "TikTok",
+          "type": "oembed",
+          "endpoint": "https://www.tiktok.com/oembed",
+          "sample": "https://www.tiktok.com/@tiktok/video/6718335390845095173"
+        },
+        {
+          "id": "spotify",
+          "name": "Spotify",
+          "type": "oembed",
+          "endpoint": "https://open.spotify.com/oembed",
+          "sample": "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT"
+        },
+        {
+          "id": "soundcloud",
+          "name": "SoundCloud",
+          "type": "oembed",
+          "endpoint": "https://soundcloud.com/oembed",
+          "sample": "https://soundcloud.com/forss/flickermood",
+          "extraParams": {
+            "format": "json"
+          }
+        },
+        {
+          "id": "dailymotion",
+          "name": "Dailymotion",
+          "type": "oembed",
+          "endpoint": "https://www.dailymotion.com/services/oembed",
+          "sample": "https://www.dailymotion.com/video/x7tgad0"
+        },
+        {
+          "id": "apple-podcasts",
+          "name": "Apple Podcasts",
+          "type": "oembed",
+          "endpoint": "https://podcasts.apple.com/api/oembed",
+          "sample": "https://podcasts.apple.com/us/podcast/the-daily/id1200361736"
+        }
       ]
     },
     {
@@ -20,11 +65,40 @@
       "title": "Embeds ohne oEmbed",
       "description": "Diese Anbieter haben kein oEmbed. Kiesel liest die Einbettungs-URL aus der Seite — geprüft wird deshalb das Muster, an dem der Code hängt, nicht nur die Erreichbarkeit.",
       "checks": [
-        { "id": "zdf", "name": "ZDF (JSON-LD VideoObject)", "type": "pattern", "url": "https://www.zdf.de/magazine/die-anstalt-104", "pattern": "application/ld\\+json", "note": "Kiesel liest embedUrl aus dem JSON-LD VideoObject." },
-        { "id": "ard-audiothek", "name": "ARD Audiothek (twitter:player)", "type": "pattern", "url": "https://www.ardaudiothek.de/", "pattern": "<meta|<html", "note": "Kiesel liest die Player-URL aus dem twitter:player-Meta-Tag." },
-        { "id": "twitch", "name": "Twitch (Player)", "type": "http", "url": "https://player.twitch.tv/?channel=twitch&parent=kiesel.app" },
-        { "id": "overcast", "name": "Overcast", "type": "http", "url": "https://overcast.fm/" },
-        { "id": "pocketcasts", "name": "Pocket Casts", "type": "http", "url": "https://pocketcasts.com/" }
+        {
+          "id": "zdf",
+          "name": "ZDF (JSON-LD VideoObject)",
+          "type": "pattern",
+          "url": "https://www.zdf.de/magazine/die-anstalt-104",
+          "pattern": "application/ld\\+json",
+          "note": "Kiesel liest embedUrl aus dem JSON-LD VideoObject."
+        },
+        {
+          "id": "ard-audiothek",
+          "name": "ARD Audiothek (twitter:player)",
+          "type": "pattern",
+          "url": "https://www.ardaudiothek.de/",
+          "pattern": "<meta|<html",
+          "note": "Kiesel liest die Player-URL aus dem twitter:player-Meta-Tag."
+        },
+        {
+          "id": "twitch",
+          "name": "Twitch (Player)",
+          "type": "http",
+          "url": "https://player.twitch.tv/?channel=twitch&parent=kiesel.app"
+        },
+        {
+          "id": "overcast",
+          "name": "Overcast",
+          "type": "http",
+          "url": "https://overcast.fm/"
+        },
+        {
+          "id": "pocketcasts",
+          "name": "Pocket Casts",
+          "type": "http",
+          "url": "https://pocketcasts.com/"
+        }
       ]
     },
     {
@@ -32,28 +106,87 @@
       "title": "Protokoll-APIs",
       "description": "Ohne diese kann Kiesel nicht lesen, auflösen oder anmelden.",
       "checks": [
-        { "id": "bsky-appview", "name": "Bluesky AppView (resolveHandle)", "type": "json", "url": "https://public.api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=bsky.app", "expectField": "did" },
-        { "id": "bsky-social", "name": "bsky.social PDS", "type": "json", "url": "https://bsky.social/xrpc/com.atproto.server.describeServer", "expectField": "availableUserDomains" },
-        { "id": "mastodon-social", "name": "mastodon.social API", "type": "json", "url": "https://mastodon.social/api/v2/instance", "expectField": "version" },
-        { "id": "wikidata", "name": "Wikidata-Suche", "type": "json", "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&search=Berlin&language=de&format=json&type=item", "expectField": "search" }
+        {
+          "id": "bsky-appview",
+          "name": "Bluesky AppView (resolveHandle)",
+          "type": "json",
+          "url": "https://public.api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=bsky.app",
+          "expectField": "did"
+        },
+        {
+          "id": "bsky-social",
+          "name": "bsky.social PDS",
+          "type": "json",
+          "url": "https://bsky.social/xrpc/com.atproto.server.describeServer",
+          "expectField": "availableUserDomains"
+        },
+        {
+          "id": "mastodon-social",
+          "name": "mastodon.social API",
+          "type": "json",
+          "url": "https://mastodon.social/api/v2/instance",
+          "expectField": "version"
+        },
+        {
+          "id": "wikidata",
+          "name": "Wikidata-Suche",
+          "type": "json",
+          "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&search=Berlin&language=de&format=json&type=item",
+          "expectField": "search"
+        }
       ]
     },
     {
       "id": "feeds",
       "title": "Feed-Quellen",
-      "description": "YouTube-RSS ist der einzige Weg, auf dem Kiesel Kanäle und Playlists abonniert.",
+      "description": "YouTube-RSS ist der einzige Weg, auf dem Kiesel Kanäle und Playlists abonniert. Achtung: YouTube liefert /feeds/ nicht an Rechenzentrums-IPs aus — aus einem CI-Runner heraus ist dieser Endpunkt daher nicht prüfbar.",
       "checks": [
-        { "id": "yt-feed-channel", "name": "YouTube-Feed (Kanal)", "type": "pattern", "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uZZ5FSM9Ttw", "pattern": "<feed|<entry", "note": "Bricht dieser Check, lassen sich YouTube-Kanäle nicht mehr abonnieren." },
-        { "id": "yt-feed-playlist", "name": "YouTube-Feed (Playlist)", "type": "pattern", "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=UU_x5XG1OV2P6uZZ5FSM9Ttw", "pattern": "<feed|<entry", "note": "Uploads-Playlist des Google-for-Developers-Kanals — bewusst eine neutrale, offizielle Quelle, damit dieses \u00f6ffentliche Repo nichts \u00fcber pers\u00f6nliche Abos verr\u00e4t." },
-        { "id": "yt-channel-page", "name": "YouTube-Kanalseite (channel_id im HTML)", "type": "pattern", "url": "https://www.youtube.com/@GoogleDevelopers", "pattern": "channel_id=UC[0-9A-Za-z_-]{22}", "note": "Aus diesem Muster leitet Kiesel die Feed-URL eines @handle-Links ab." }
+        {
+          "id": "yt-feed-channel",
+          "name": "YouTube-Feed (Kanal)",
+          "type": "pattern",
+          "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uZZ5FSM9Ttw",
+          "pattern": "<feed|<entry",
+          "note": "Bricht dieser Check auf einem Endkunden-Anschluss, lassen sich YouTube-Kanäle nicht mehr abonnieren.",
+          "datacenterBlocked": true
+        },
+        {
+          "id": "yt-feed-playlist",
+          "name": "YouTube-Feed (Playlist)",
+          "type": "pattern",
+          "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=UU_x5XG1OV2P6uZZ5FSM9Ttw",
+          "pattern": "<feed|<entry",
+          "note": "Uploads-Playlist des Google-for-Developers-Kanals — bewusst eine neutrale, offizielle Quelle, damit dieses öffentliche Repo nichts über persönliche Abos verrät.",
+          "datacenterBlocked": true
+        },
+        {
+          "id": "yt-channel-page",
+          "name": "YouTube-Kanalseite (channel_id im HTML)",
+          "type": "pattern",
+          "url": "https://www.youtube.com/@GoogleDevelopers",
+          "pattern": "channel_id=UC[0-9A-Za-z_-]{22}",
+          "note": "Aus diesem Muster leitet Kiesel die Feed-URL eines @handle-Links ab."
+        }
       ]
     },
     {
       "id": "kiesel",
       "title": "Kiesel-eigene Endpunkte",
       "checks": [
-        { "id": "client-metadata", "name": "OAuth client-metadata.json", "type": "json", "url": "https://kiesel.app/client-metadata.json", "expectField": "client_id", "note": "PDS-Server laden diese Datei bei jedem Bluesky-Login. Fehlt sie, schlägt die Anmeldung fehl." },
-        { "id": "website", "name": "kiesel.app", "type": "http", "url": "https://kiesel.app/" }
+        {
+          "id": "client-metadata",
+          "name": "OAuth client-metadata.json",
+          "type": "json",
+          "url": "https://kiesel.app/client-metadata.json",
+          "expectField": "client_id",
+          "note": "PDS-Server laden diese Datei bei jedem Bluesky-Login. Fehlt sie, schlägt die Anmeldung fehl."
+        },
+        {
+          "id": "website",
+          "name": "kiesel.app",
+          "type": "http",
+          "url": "https://kiesel.app/"
+        }
       ]
     }
   ]

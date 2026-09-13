@@ -6,10 +6,15 @@
  * page for humans plus status.json and history.json for machines.
  *
  * A check reports one of:
- *   ok      the endpoint answered and the expectation held
- *   sample  the endpoint works, but our example URL is gone (404 on a
- *           sample) — our problem to fix, not an outage
- *   fail    the endpoint is down, blocked, or changed shape
+ *   ok       the endpoint answered and the expectation held
+ *   sample   the endpoint works, but our example URL is gone (404 on a
+ *            sample) — our problem to fix, not an outage
+ *   blocked  the endpoint refuses datacenter traffic, so a CI runner cannot
+ *            judge it. Measured 2026-09-13: YouTube's /feeds/ answers 404
+ *            from this machine AND from GitHub's network, while serving the
+ *            same URL fine over a consumer connection. Marking it fail would
+ *            leave the page permanently red and teach everyone to ignore it.
+ *   fail     the endpoint is down or changed shape
  *
  * Separating "sample" from "fail" matters: a dead example video would
  * otherwise show up as a dead provider and train everyone to ignore the page.
@@ -52,6 +57,17 @@ function oembedUrl(check) {
 
 async function runCheck(check) {
   const base = { id: check.id, name: check.name, note: check.note ?? null };
+  const result = await runProbe(check, base);
+  // A blocked-by-datacenter endpoint reports "blocked" rather than "fail":
+  // from CI we genuinely cannot tell whether it is healthy.
+  if (result.state === "fail" && check.datacenterBlocked) {
+    return { ...result, state: "blocked",
+      detail: `Von Rechenzentrums-IPs gesperrt (${result.status || "kein Status"}) — aus CI nicht prüfbar.` };
+  }
+  return result;
+}
+
+async function runProbe(check, base) {
 
   if (check.type === "oembed") {
     const url = oembedUrl(check);
@@ -107,13 +123,17 @@ async function runCheck(check) {
     : { ...base, state: "fail", status: r.status, ms: r.ms, detail: r.error ?? `HTTP ${r.status}` };
 }
 
-const STATE_LABEL = { ok: "OK", sample: "Beispiel veraltet", fail: "Ausfall" };
+const STATE_LABEL = { ok: "OK", sample: "Beispiel veraltet", blocked: "Nicht prüfbar", fail: "Ausfall" };
 
 function renderPage(report, history) {
-  const counts = { ok: 0, sample: 0, fail: 0 };
+  const counts = { ok: 0, sample: 0, blocked: 0, fail: 0 };
   for (const g of report.groups) for (const c of g.checks) counts[c.state]++;
   const overall = counts.fail > 0 ? "fail" : counts.sample > 0 ? "sample" : "ok";
-  const headline = { ok: "Alles erreichbar", sample: "Läuft, Beispiele veraltet", fail: `${counts.fail} Ausfall${counts.fail === 1 ? "" : "e"}` }[overall];
+  const headline = {
+    ok: "Alles erreichbar",
+    sample: "Läuft, Beispiele veraltet",
+    fail: `${counts.fail} Ausfall${counts.fail === 1 ? "" : "e"}`,
+  }[overall];
 
   const spark = (id) => {
     const runs = history.filter((h) => h.states[id]).slice(-HISTORY_LENGTH);
@@ -172,26 +192,31 @@ function renderPage(report, history) {
   td { padding:.55rem .5rem .55rem 0; border-top:1px solid var(--border); vertical-align:top; }
   .note { color:var(--muted); font-size:.82rem; }
   .badge { font-size:.82rem; font-weight:600; white-space:nowrap; }
-  .badge.ok{color:var(--ok)} .badge.sample{color:var(--sample)} .badge.fail{color:var(--fail)}
+  .badge.ok{color:var(--ok)} .badge.sample{color:var(--sample)}
+  .badge.blocked{color:var(--dim)} .badge.fail{color:var(--fail)}
   .detail { color:var(--muted); font-size:.88rem; }
   .ms { display:block; color:var(--dim); font-size:.78rem; }
   .spark { white-space:nowrap; }
   .s { display:inline-block; width:5px; height:16px; margin-right:2px; border-radius:1px;
     background:var(--dim); }
-  .s.ok{background:var(--ok)} .s.sample{background:var(--sample)} .s.fail{background:var(--fail)}
+  .s.ok{background:var(--ok)} .s.sample{background:var(--sample)}
+  .s.blocked{background:var(--dim)} .s.fail{background:var(--fail)}
   footer { color:var(--dim); font-size:.85rem; margin-top:2rem; }
   a { color:inherit; }
   @media (max-width:560px){ .spark{display:none} th:nth-child(4),td:nth-child(4){display:none} }
 </style></head>
 <body><div class="wrap">
   <header><h1>Kiesel · Drittanbieter</h1><span class="overall ${overall}">${headline}</span></header>
-  <p class="stamp">Zuletzt geprüft: ${report.time} · ${counts.ok} ok, ${counts.sample} veraltete Beispiele, ${counts.fail} Ausfälle</p>
+  <p class="stamp">Zuletzt geprüft: ${report.time} · ${counts.ok} ok, ${counts.sample} veraltete Beispiele, ${counts.blocked} nicht prüfbar, ${counts.fail} Ausfälle</p>
   ${groups}
   <footer>
     Täglich automatisch geprüft. <a href="status.json">status.json</a> ·
     <a href="history.json">history.json</a><br>
-    „Beispiel veraltet" heißt: Der Dienst antwortet, aber die hier hinterlegte Beispiel-URL
-    existiert nicht mehr — das ist unsere Baustelle, kein Ausfall des Anbieters.
+    <strong>Beispiel veraltet</strong>: Der Dienst antwortet, aber die hier hinterlegte
+    Beispiel-URL existiert nicht mehr — unsere Baustelle, kein Ausfall des Anbieters.<br>
+    <strong>Nicht prüfbar</strong>: Der Anbieter beantwortet Anfragen aus Rechenzentren nicht,
+    über einen normalen Anschluss aber schon. Aus dieser Prüfung heraus lässt sich also nicht
+    sagen, ob er gesund ist — YouTubes RSS-Endpunkt ist so ein Fall.
   </footer>
 </div></body></html>`;
 }
@@ -224,12 +249,14 @@ await writeFile(root + "public/status.json", JSON.stringify(report, null, 2));
 await writeFile(historyPath, JSON.stringify(history, null, 2));
 await writeFile(root + "public/index.html", renderPage(report, history));
 
-const failed = groups.flatMap((g) => g.checks).filter((c) => c.state === "fail");
-const stale = groups.flatMap((g) => g.checks).filter((c) => c.state === "sample");
+const all = groups.flatMap((g) => g.checks);
+const failed = all.filter((c) => c.state === "fail");
+const stale = all.filter((c) => c.state === "sample");
+const blocked = all.filter((c) => c.state === "blocked");
 for (const g of groups) for (const c of g.checks) {
   console.log(`${c.state.toUpperCase().padEnd(6)} ${c.name} — ${c.detail}`);
 }
-console.log(`\n${failed.length} Ausfälle, ${stale.length} veraltete Beispiele.`);
+console.log(`\n${failed.length} Ausfälle, ${stale.length} veraltete Beispiele, ${blocked.length} nicht prüfbar.`);
 // The workflow still publishes the page on failure; the exit code only drives
 // the red run marker and the notification.
 process.exit(failed.length > 0 ? 1 : 0);
