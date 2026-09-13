@@ -44,8 +44,8 @@
       "description": "YouTube-RSS ist der einzige Weg, auf dem Kiesel Kanäle und Playlists abonniert.",
       "checks": [
         { "id": "yt-feed-channel", "name": "YouTube-Feed (Kanal)", "type": "pattern", "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uZZ5FSM9Ttw", "pattern": "<feed|<entry", "note": "Bricht dieser Check, lassen sich YouTube-Kanäle nicht mehr abonnieren." },
-        { "id": "yt-feed-playlist", "name": "YouTube-Feed (Playlist)", "type": "pattern", "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLhVTii7kKLs56q-F9Ds1Gao70AiYVOHao", "pattern": "<feed|<entry" },
-        { "id": "yt-channel-page", "name": "YouTube-Kanalseite (channel_id im HTML)", "type": "pattern", "url": "https://www.youtube.com/@flexii", "pattern": "channel_id=UC[0-9A-Za-z_-]{22}", "note": "Aus diesem Muster leitet Kiesel die Feed-URL eines @handle-Links ab." }
+        { "id": "yt-feed-playlist", "name": "YouTube-Feed (Playlist)", "type": "pattern", "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=UU_x5XG1OV2P6uZZ5FSM9Ttw", "pattern": "<feed|<entry", "note": "Uploads-Playlist des Google-for-Developers-Kanals — bewusst eine neutrale, offizielle Quelle, damit dieses \u00f6ffentliche Repo nichts \u00fcber pers\u00f6nliche Abos verr\u00e4t." },
+        { "id": "yt-channel-page", "name": "YouTube-Kanalseite (channel_id im HTML)", "type": "pattern", "url": "https://www.youtube.com/@GoogleDevelopers", "pattern": "channel_id=UC[0-9A-Za-z_-]{22}", "note": "Aus diesem Muster leitet Kiesel die Feed-URL eines @handle-Links ab." }
       ]
     },
     {
