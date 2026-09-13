@@ -1,0 +1,74 @@
+name: Health Check
+
+on:
+  schedule:
+    # 06:15 UTC daily — after European publishers' nightly deploys, before
+    # the working day, so a broken provider is known before anyone reports it.
+    - cron: "15 6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "checks.json"
+      - "scripts/**"
+      - ".github/workflows/health-check.yml"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: health-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Probe endpoints
+        id: probe
+        # Keep going on failure: a red run must still publish the page that
+        # says what is red.
+        continue-on-error: true
+        run: node scripts/health-check.mjs
+
+      - name: Commit results
+        run: |
+          git config user.name "kiesel-status-bot"
+          git config user.email "actions@github.com"
+          git add public/
+          if git diff --staged --quiet; then
+            echo "Nothing changed."
+          else
+            git commit -m "chore: health check $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Fail the run if an endpoint is down
+        if: steps.probe.outcome == 'failure'
+        run: |
+          echo "::error::Mindestens ein Endpunkt ist ausgefallen — siehe Statusseite."
+          exit 1
+
+  deploy:
+    needs: check
+    if: always()
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

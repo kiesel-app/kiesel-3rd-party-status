@@ -1,0 +1,230 @@
+{
+  "time": "2026-09-13 06:21 UTC",
+  "generated": "2026-09-13T06:21:52.429Z",
+  "groups": [
+    {
+      "id": "oembed",
+      "title": "oEmbed-Provider",
+      "description": "Kiesel lädt Embeds über diese oEmbed-Endpunkte. Fällt einer aus, zeigt die App für dessen Links keine Vorschau mehr.",
+      "checks": [
+        {
+          "id": "youtube",
+          "name": "YouTube",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 106,
+          "detail": "Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster)"
+        },
+        {
+          "id": "vimeo",
+          "name": "Vimeo",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 261,
+          "detail": "The Mountain"
+        },
+        {
+          "id": "tiktok",
+          "name": "TikTok",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 255,
+          "detail": "Scramble up ur name & I’ll try to guess it😍❤️ #foryoupage #petsoftiktok #aesthetic"
+        },
+        {
+          "id": "spotify",
+          "name": "Spotify",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 147,
+          "detail": "Never Gonna Give You Up"
+        },
+        {
+          "id": "soundcloud",
+          "name": "SoundCloud",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 142,
+          "detail": "Flickermood by Forss"
+        },
+        {
+          "id": "dailymotion",
+          "name": "Dailymotion",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 111,
+          "detail": "Midnight Sun | Iceland"
+        },
+        {
+          "id": "apple-podcasts",
+          "name": "Apple Podcasts",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 319,
+          "detail": "The Daily"
+        }
+      ]
+    },
+    {
+      "id": "scraped",
+      "title": "Embeds ohne oEmbed",
+      "description": "Diese Anbieter haben kein oEmbed. Kiesel liest die Einbettungs-URL aus der Seite — geprüft wird deshalb das Muster, an dem der Code hängt, nicht nur die Erreichbarkeit.",
+      "checks": [
+        {
+          "id": "zdf",
+          "name": "ZDF (JSON-LD VideoObject)",
+          "note": "Kiesel liest embedUrl aus dem JSON-LD VideoObject.",
+          "state": "ok",
+          "status": 200,
+          "ms": 324,
+          "detail": "Muster gefunden"
+        },
+        {
+          "id": "ard-audiothek",
+          "name": "ARD Audiothek (twitter:player)",
+          "note": "Kiesel liest die Player-URL aus dem twitter:player-Meta-Tag.",
+          "state": "ok",
+          "status": 200,
+          "ms": 190,
+          "detail": "Muster gefunden"
+        },
+        {
+          "id": "twitch",
+          "name": "Twitch (Player)",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 119,
+          "detail": "HTTP 200"
+        },
+        {
+          "id": "overcast",
+          "name": "Overcast",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 647,
+          "detail": "HTTP 200"
+        },
+        {
+          "id": "pocketcasts",
+          "name": "Pocket Casts",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 819,
+          "detail": "HTTP 200"
+        }
+      ]
+    },
+    {
+      "id": "protocols",
+      "title": "Protokoll-APIs",
+      "description": "Ohne diese kann Kiesel nicht lesen, auflösen oder anmelden.",
+      "checks": [
+        {
+          "id": "bsky-appview",
+          "name": "Bluesky AppView (resolveHandle)",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 536,
+          "detail": "Feld \"did\" vorhanden"
+        },
+        {
+          "id": "bsky-social",
+          "name": "bsky.social PDS",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 420,
+          "detail": "Feld \"availableUserDomains\" vorhanden"
+        },
+        {
+          "id": "mastodon-social",
+          "name": "mastodon.social API",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 62,
+          "detail": "Feld \"version\" vorhanden"
+        },
+        {
+          "id": "wikidata",
+          "name": "Wikidata-Suche",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 355,
+          "detail": "Feld \"search\" vorhanden"
+        }
+      ]
+    },
+    {
+      "id": "feeds",
+      "title": "Feed-Quellen",
+      "description": "YouTube-RSS ist der einzige Weg, auf dem Kiesel Kanäle und Playlists abonniert.",
+      "checks": [
+        {
+          "id": "yt-feed-channel",
+          "name": "YouTube-Feed (Kanal)",
+          "note": "Bricht dieser Check, lassen sich YouTube-Kanäle nicht mehr abonnieren.",
+          "state": "fail",
+          "status": 404,
+          "ms": 131,
+          "detail": "HTTP 404"
+        },
+        {
+          "id": "yt-feed-playlist",
+          "name": "YouTube-Feed (Playlist)",
+          "note": null,
+          "state": "fail",
+          "status": 404,
+          "ms": 125,
+          "detail": "HTTP 404"
+        },
+        {
+          "id": "yt-channel-page",
+          "name": "YouTube-Kanalseite (channel_id im HTML)",
+          "note": "Aus diesem Muster leitet Kiesel die Feed-URL eines @handle-Links ab.",
+          "state": "ok",
+          "status": 200,
+          "ms": 480,
+          "detail": "Muster gefunden"
+        }
+      ]
+    },
+    {
+      "id": "kiesel",
+      "title": "Kiesel-eigene Endpunkte",
+      "description": "",
+      "checks": [
+        {
+          "id": "client-metadata",
+          "name": "OAuth client-metadata.json",
+          "note": "PDS-Server laden diese Datei bei jedem Bluesky-Login. Fehlt sie, schlägt die Anmeldung fehl.",
+          "state": "ok",
+          "status": 200,
+          "ms": 156,
+          "detail": "Feld \"client_id\" vorhanden"
+        },
+        {
+          "id": "website",
+          "name": "kiesel.app",
+          "note": null,
+          "state": "ok",
+          "status": 200,
+          "ms": 97,
+          "detail": "HTTP 200"
+        }
+      ]
+    }
+  ]
+}

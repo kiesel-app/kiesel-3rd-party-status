@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiesel · Status der Drittanbieter</title>
+<style>
+  :root { color-scheme: light dark;
+    --bg:#f9f5f0; --fg:#3b322a; --muted:#6b5f52; --dim:#9b8b78;
+    --card:#fffdfa; --border:#e7ddcf;
+    --ok:#4a7c3f; --sample:#b5623c; --fail:#b3261e; }
+  @media (prefers-color-scheme: dark) { :root {
+    --bg:#14120f; --fg:#ece5da; --muted:#b5a893; --dim:#7d7264;
+    --card:#1d1a16; --border:#2e2921;
+    --ok:#7fb96a; --sample:#e08a5c; --fail:#f2705f; } }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:2rem 1rem 4rem; background:var(--bg); color:var(--fg);
+    font:16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  header { display:flex; align-items:center; gap:1rem; margin-bottom:.25rem; }
+  h1 { font-size:1.4rem; margin:0; letter-spacing:.02em; }
+  .overall { font-size:1.05rem; font-weight:600; padding:.3rem .8rem; border-radius:999px;
+    border:1px solid var(--border); }
+  .overall.ok{color:var(--ok)} .overall.sample{color:var(--sample)} .overall.fail{color:var(--fail)}
+  .stamp { color:var(--muted); font-size:.9rem; margin:0 0 2rem; }
+  section { background:var(--card); border:1px solid var(--border); border-radius:12px;
+    padding:1.1rem 1.2rem; margin-bottom:1.2rem; }
+  h2 { font-size:1.05rem; margin:0 0 .3rem; }
+  .desc { color:var(--muted); font-size:.9rem; margin:0 0 .9rem; }
+  table { width:100%; border-collapse:collapse; }
+  th { text-align:left; font-size:.75rem; text-transform:uppercase; letter-spacing:.06em;
+    color:var(--dim); font-weight:600; padding:.3rem .5rem .3rem 0; }
+  td { padding:.55rem .5rem .55rem 0; border-top:1px solid var(--border); vertical-align:top; }
+  .note { color:var(--muted); font-size:.82rem; }
+  .badge { font-size:.82rem; font-weight:600; white-space:nowrap; }
+  .badge.ok{color:var(--ok)} .badge.sample{color:var(--sample)} .badge.fail{color:var(--fail)}
+  .detail { color:var(--muted); font-size:.88rem; }
+  .ms { display:block; color:var(--dim); font-size:.78rem; }
+  .spark { white-space:nowrap; }
+  .s { display:inline-block; width:5px; height:16px; margin-right:2px; border-radius:1px;
+    background:var(--dim); }
+  .s.ok{background:var(--ok)} .s.sample{background:var(--sample)} .s.fail{background:var(--fail)}
+  footer { color:var(--dim); font-size:.85rem; margin-top:2rem; }
+  a { color:inherit; }
+  @media (max-width:560px){ .spark{display:none} th:nth-child(4),td:nth-child(4){display:none} }
+</style></head>
+<body><div class="wrap">
+  <header><h1>Kiesel · Drittanbieter</h1><span class="overall fail">2 Ausfalle</span></header>
+  <p class="stamp">Zuletzt geprüft: 2026-09-13 06:21 UTC · 19 ok, 0 veraltete Beispiele, 2 Ausfälle</p>
+  
+    <section>
+      <h2>oEmbed-Provider</h2>
+      <p class="desc">Kiesel lädt Embeds über diese oEmbed-Endpunkte. Fällt einer aus, zeigt die App für dessen Links keine Vorschau mehr.</p>
+      <table>
+        <thead><tr><th>Dienst</th><th>Status</th><th>Details</th><th>Verlauf</th></tr></thead>
+        <tbody>
+        
+          <tr>
+            <td><strong>YouTube</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster)<span class="ms">200 · 106 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>Vimeo</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">The Mountain<span class="ms">200 · 261 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>TikTok</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Scramble up ur name & I’ll try to guess it😍❤️ #foryoupage #petsoftiktok #aesthetic<span class="ms">200 · 255 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>Spotify</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Never Gonna Give You Up<span class="ms">200 · 147 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>SoundCloud</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Flickermood by Forss<span class="ms">200 · 142 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>Dailymotion</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Midnight Sun | Iceland<span class="ms">200 · 111 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>Apple Podcasts</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">The Daily<span class="ms">200 · 319 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Embeds ohne oEmbed</h2>
+      <p class="desc">Diese Anbieter haben kein oEmbed. Kiesel liest die Einbettungs-URL aus der Seite — geprüft wird deshalb das Muster, an dem der Code hängt, nicht nur die Erreichbarkeit.</p>
+      <table>
+        <thead><tr><th>Dienst</th><th>Status</th><th>Details</th><th>Verlauf</th></tr></thead>
+        <tbody>
+        
+          <tr>
+            <td><strong>ZDF (JSON-LD VideoObject)</strong><br><span class="note">Kiesel liest embedUrl aus dem JSON-LD VideoObject.</span></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Muster gefunden<span class="ms">200 · 324 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>ARD Audiothek (twitter:player)</strong><br><span class="note">Kiesel liest die Player-URL aus dem twitter:player-Meta-Tag.</span></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Muster gefunden<span class="ms">200 · 190 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>Twitch (Player)</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">HTTP 200<span class="ms">200 · 119 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>Overcast</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">HTTP 200<span class="ms">200 · 647 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>Pocket Casts</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">HTTP 200<span class="ms">200 · 819 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Protokoll-APIs</h2>
+      <p class="desc">Ohne diese kann Kiesel nicht lesen, auflösen oder anmelden.</p>
+      <table>
+        <thead><tr><th>Dienst</th><th>Status</th><th>Details</th><th>Verlauf</th></tr></thead>
+        <tbody>
+        
+          <tr>
+            <td><strong>Bluesky AppView (resolveHandle)</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Feld "did" vorhanden<span class="ms">200 · 536 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>bsky.social PDS</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Feld "availableUserDomains" vorhanden<span class="ms">200 · 420 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>mastodon.social API</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Feld "version" vorhanden<span class="ms">200 · 62 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>Wikidata-Suche</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Feld "search" vorhanden<span class="ms">200 · 355 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Feed-Quellen</h2>
+      <p class="desc">YouTube-RSS ist der einzige Weg, auf dem Kiesel Kanäle und Playlists abonniert.</p>
+      <table>
+        <thead><tr><th>Dienst</th><th>Status</th><th>Details</th><th>Verlauf</th></tr></thead>
+        <tbody>
+        
+          <tr>
+            <td><strong>YouTube-Feed (Kanal)</strong><br><span class="note">Bricht dieser Check, lassen sich YouTube-Kanäle nicht mehr abonnieren.</span></td>
+            <td><span class="badge fail">Ausfall</span></td>
+            <td class="detail">HTTP 404<span class="ms">404 · 131 ms</span></td>
+            <td class="spark"><i class="s fail" title="2026-09-13 06:21 UTC: Ausfall"></i></td>
+          </tr>
+          <tr>
+            <td><strong>YouTube-Feed (Playlist)</strong></td>
+            <td><span class="badge fail">Ausfall</span></td>
+            <td class="detail">HTTP 404<span class="ms">404 · 125 ms</span></td>
+            <td class="spark"><i class="s fail" title="2026-09-13 06:21 UTC: Ausfall"></i></td>
+          </tr>
+          <tr>
+            <td><strong>YouTube-Kanalseite (channel_id im HTML)</strong><br><span class="note">Aus diesem Muster leitet Kiesel die Feed-URL eines @handle-Links ab.</span></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Muster gefunden<span class="ms">200 · 480 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Kiesel-eigene Endpunkte</h2>
+      
+      <table>
+        <thead><tr><th>Dienst</th><th>Status</th><th>Details</th><th>Verlauf</th></tr></thead>
+        <tbody>
+        
+          <tr>
+            <td><strong>OAuth client-metadata.json</strong><br><span class="note">PDS-Server laden diese Datei bei jedem Bluesky-Login. Fehlt sie, schlägt die Anmeldung fehl.</span></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">Feld "client_id" vorhanden<span class="ms">200 · 156 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+          <tr>
+            <td><strong>kiesel.app</strong></td>
+            <td><span class="badge ok">OK</span></td>
+            <td class="detail">HTTP 200<span class="ms">200 · 97 ms</span></td>
+            <td class="spark"><i class="s ok" title="2026-09-13 06:21 UTC: OK"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  <footer>
+    Täglich automatisch geprüft. <a href="status.json">status.json</a> ·
+    <a href="history.json">history.json</a><br>
+    „Beispiel veraltet" heißt: Der Dienst antwortet, aber die hier hinterlegte Beispiel-URL
+    existiert nicht mehr — das ist unsere Baustelle, kein Ausfall des Anbieters.
+  </footer>
+</div></body></html>
