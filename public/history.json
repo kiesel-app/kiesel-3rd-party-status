@@ -258,5 +258,31 @@
       "client-metadata": "ok",
       "website": "ok"
     }
+  },
+  {
+    "time": "2026-09-18 11:17 UTC",
+    "states": {
+      "youtube": "ok",
+      "vimeo": "ok",
+      "tiktok": "ok",
+      "spotify": "ok",
+      "soundcloud": "ok",
+      "dailymotion": "ok",
+      "apple-podcasts": "ok",
+      "zdf": "ok",
+      "ard-audiothek": "ok",
+      "twitch": "ok",
+      "overcast": "ok",
+      "pocketcasts": "ok",
+      "bsky-appview": "ok",
+      "bsky-social": "ok",
+      "mastodon-social": "ok",
+      "wikidata": "ok",
+      "yt-feed-channel": "ok",
+      "yt-feed-playlist": "ok",
+      "yt-channel-page": "ok",
+      "client-metadata": "ok",
+      "website": "ok"
+    }
   }
 ]
