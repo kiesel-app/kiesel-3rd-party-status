@@ -1,6 +1,6 @@
 {
-  "time": "2026-09-19 11:01 UTC",
-  "generated": "2026-09-19T11:01:17.902Z",
+  "time": "2026-09-20 11:26 UTC",
+  "generated": "2026-09-20T11:26:23.372Z",
   "groups": [
     {
       "id": "oembed",
@@ -13,7 +13,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 112,
+          "ms": 136,
           "detail": "Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster)"
         },
         {
@@ -22,7 +22,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 125,
+          "ms": 134,
           "detail": "The Mountain"
         },
         {
@@ -31,7 +31,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 177,
+          "ms": 280,
           "detail": "Scramble up ur name & I’ll try to guess it😍❤️ #foryoupage #petsoftiktok #aesthetic"
         },
         {
@@ -40,7 +40,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 171,
+          "ms": 707,
           "detail": "Never Gonna Give You Up"
         },
         {
@@ -49,7 +49,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 258,
+          "ms": 128,
           "detail": "Flickermood by Forss"
         },
         {
@@ -58,7 +58,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 816,
+          "ms": 617,
           "detail": "Midnight Sun | Iceland"
         },
         {
@@ -67,7 +67,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 185,
+          "ms": 300,
           "detail": "The Daily"
         }
       ]
@@ -83,7 +83,7 @@
           "note": "Kiesel liest embedUrl aus dem JSON-LD VideoObject.",
           "state": "ok",
           "status": 200,
-          "ms": 1206,
+          "ms": 1251,
           "detail": "Muster gefunden"
         },
         {
@@ -92,7 +92,7 @@
           "note": "Kiesel liest die Player-URL aus dem twitter:player-Meta-Tag.",
           "state": "ok",
           "status": 200,
-          "ms": 1257,
+          "ms": 1554,
           "detail": "Muster gefunden"
         },
         {
@@ -101,7 +101,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 78,
+          "ms": 100,
           "detail": "HTTP 200"
         },
         {
@@ -110,7 +110,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 169,
+          "ms": 133,
           "detail": "HTTP 200"
         },
         {
@@ -119,7 +119,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 145,
+          "ms": 305,
           "detail": "HTTP 200"
         }
       ]
@@ -135,7 +135,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 316,
+          "ms": 315,
           "detail": "Feld \"did\" vorhanden"
         },
         {
@@ -144,7 +144,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 320,
+          "ms": 62,
           "detail": "Feld \"availableUserDomains\" vorhanden"
         },
         {
@@ -153,7 +153,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 504,
+          "ms": 238,
           "detail": "Feld \"version\" vorhanden"
         },
         {
@@ -162,7 +162,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 194,
+          "ms": 413,
           "detail": "Feld \"search\" vorhanden"
         }
       ]
@@ -178,7 +178,7 @@
           "note": "Solange dieser Check rot ist, lassen sich YouTube-Kanäle nicht abonnieren.",
           "state": "ok",
           "status": 200,
-          "ms": 23,
+          "ms": 233,
           "detail": "Muster gefunden"
         },
         {
@@ -187,7 +187,7 @@
           "note": "Dasselbe für Playlists.",
           "state": "ok",
           "status": 200,
-          "ms": 232,
+          "ms": 135,
           "detail": "Muster gefunden"
         },
         {
@@ -196,7 +196,7 @@
           "note": "Aus diesem Muster leitet Kiesel die Feed-URL eines @handle-Links ab.",
           "state": "ok",
           "status": 200,
-          "ms": 338,
+          "ms": 270,
           "detail": "Muster gefunden"
         }
       ]
@@ -212,7 +212,7 @@
           "note": "PDS-Server laden diese Datei bei jedem Bluesky-Login. Fehlt sie, schlägt die Anmeldung fehl.",
           "state": "ok",
           "status": 200,
-          "ms": 403,
+          "ms": 488,
           "detail": "Feld \"client_id\" vorhanden"
         },
         {
@@ -221,7 +221,7 @@
           "note": null,
           "state": "ok",
           "status": 200,
-          "ms": 373,
+          "ms": 388,
           "detail": "HTTP 200"
         }
       ]
